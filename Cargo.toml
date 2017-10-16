@@ -1,0 +1,7 @@
+[package]
+name = "plug2pack"
+version = "0.1.0"
+authors = ["BennyYip <yebenmy@protonmail.com>"]
+
+[dependencies]
+nom = "^3.2"
