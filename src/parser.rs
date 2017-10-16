@@ -34,7 +34,7 @@ ws!(
   )
 );
 
-named!(pub hash <HashMap<String, Value>>,
+named!(hash <HashMap<String, Value>>,
        ws!(
          map!(
            delimited!(
