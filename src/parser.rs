@@ -58,11 +58,12 @@ named!(hash <HashMap<&str, Value>>,
 named!(value<Value>,
        ws!(
          alt!(
-           array  => { |v:Vec<&str>|   Value::Array(v.iter().map(|&s| String::from(s)).collect()) } |
-           string => { |s|   Value::Str(String::from(s)) }
+           array  => { | v:Vec<&str> | Value::Array(v.iter().map( | &s | String::from(s)).collect()) } |
+           string => { | s           | Value::Str(String::from(s)) }
            )
          )
       );
+
 
 named!(parse_plug<(&str, Option<HashMap<&str,Value>>)>,
 ws!(
@@ -71,12 +72,14 @@ ws!(
     >> name: string
     >> options: alt!(
       eof!()                    => {|_| None} |
+      tag!("\"")                => {|_| None} |
       preceded!(tag!(","),hash) => {|h| Some(h)}
       )
     >> (name,options)
     )
   )
 );
+
 
 pub fn parse(content: &[u8]) -> Option<(&str, Option<HashMap<&str, Value>>)> {
     match parse_plug(content) {
@@ -87,8 +90,6 @@ pub fn parse(content: &[u8]) -> Option<(&str, Option<HashMap<&str, Value>>)> {
 
 #[test]
 fn parse_works() {
-
-
     assert_eq!(IResult::Done(&b""[..], "foo"), string(&b"'foo'"[..]));
 
     assert_eq!(IResult::Done(&b""[..], Value::Str("foo".to_owned())), value(&b"'foo'"[..]));
