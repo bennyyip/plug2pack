@@ -25,7 +25,7 @@ use parser::Value;
 use regex::Regex;
 
 #[derive(StructOpt, Debug)]
-#[structopt(name = "plug2pack", about = "convert plug.vim config to pack")]
+#[structopt(name = "plug2pack", about = "convert vim-plug config to pack")]
 struct Opt {
     #[structopt(short = "i", long = "input", help = "Input file")]
     input: String,
