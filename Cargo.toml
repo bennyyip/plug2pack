@@ -5,3 +5,9 @@ authors = ["BennyYip <yebenmy@protonmail.com>"]
 
 [dependencies]
 nom = "^3.2"
+serde = "*"
+serde_yaml = "*"
+serde_derive = "*"
+structopt = "0.1.0"
+structopt-derive = "0.1.0"
+regex = "*"
